@@ -30,8 +30,43 @@ class AppFrame extends JFrame {
 
         addButton.setBorder(emptyBorder);
         deleteButton.setBorder(emptyBorder);
-        this.add(addButton);
-        this.add(deleteButton);
+
+        // Panel for buttons
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new FlowLayout());
+        buttonPanel.add(addButton);
+        buttonPanel.add(Box.createRigidArea(new Dimension(20, 0)));
+        buttonPanel.add(deleteButton);
+        buttonPanel.setOpaque(false);
+        this.add(buttonPanel, BorderLayout.CENTER);
+
+        // Panel for task list
+        JScrollPane scrollPane = new JScrollPane(taskList);
+        scrollPane.setOpaque(false);
+        this.add(scrollPane, BorderLayout.SOUTH);
+
+        this.add(titleLabel, BorderLayout.NORTH);
+
+        addButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String newTask = JOptionPane.showInputDialog("Enter a new task:");
+                if (newTask != null && !newTask.isEmpty()) {
+                    listModel.addElement(newTask);
+                }
+            }
+        });
+
+        deleteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int[] selectedIndices = taskList.getSelectedIndices();
+                for (int i = selectedIndices.length - 1; i >= 0; i--) {
+                    listModel.removeElementAt(selectedIndices[i]);
+                }
+            }
+        });
+
         this.setVisible(true);
     }
 
@@ -42,7 +77,7 @@ class AppFrame extends JFrame {
     }
 }
 
-public class ToDoList{
+public class ToDoList {
     public static void main(String[] args) {
         new AppFrame();
     }
