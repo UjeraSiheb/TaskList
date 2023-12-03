@@ -20,12 +20,14 @@ class AppFrame extends JFrame {
         this.setSize(400, 700);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLayout(new BorderLayout());
-        this.getContentPane().setBackground(new Color(135, 206, 250)); // Set background color to light blue
+        this.getContentPane().setBackground(new Color(135, 206, 250)); 
+        // Set background color to light blue
 
         titleLabel.setPreferredSize(new Dimension(400, 80));
         titleLabel.setHorizontalAlignment(JLabel.CENTER);
         titleLabel.setOpaque(true);
-        titleLabel.setBackground(new Color(70, 130, 180)); // Set background color to steel blue
+        titleLabel.setBackground(new Color(70, 130, 180)); 
+        // Set background color to steel blue
         titleLabel.setForeground(Color.white);
 
         addButton.setBorder(emptyBorder);
